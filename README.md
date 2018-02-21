@@ -1,10 +1,7 @@
 # localforage
-[![npm (scoped with tag)](https://img.shields.io/npm/v/localforage/latest.svg?style=flat-square)](https://npmjs.com/package/localforage)
-[![npm](https://img.shields.io/npm/dt/localforage.svg?style=flat-square)](https://npmjs.com/package/localforage)
-[![CircleCI](https://img.shields.io/circleci/project/github/.svg?style=flat-square)](https://circleci.com/gh/)
-[![Codecov](https://img.shields.io/codecov/c/github/.svg?style=flat-square)](https://codecov.io/gh/)
-[![Dependencies](https://david-dm.org//status.svg?style=flat-square)](https://david-dm.org/)
-[![js-standard-style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com)
+[![npm (scoped with tag)](https://img.shields.io/npm/v/@nuxtjs/localforage/latest.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/localforage)
+[![npm](https://img.shields.io/npm/dt/@nuxtjs/localforage.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/localforage)
+[![CircleCI](https://img.shields.io/circleci/project/github/.svg?style=flat-square)]
 
 > 
 
