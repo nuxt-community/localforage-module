@@ -72,19 +72,19 @@ Default: `''`
 ### Get item
 
 ```js
-let item = await this.$localForage.getItem(key, callback)
+let item = await this.$localForage.getItem(key)
 ```
 
 ### Set item
 
 ```js
-await this.$localForage.setItem(key, value, callback)
+await this.$localForage.setItem(key, value)
 ```
 
 ### Remove item
 
 ```js
-await this.$localForage.removeItem(key, callback)
+await this.$localForage.removeItem(key)
 ```
 
 ### Clear
@@ -102,13 +102,13 @@ let length = await this.$localForage.length
 ### Get the name of a key based on its ID
 
 ```js
-let k = await this.$localForage.key(keyIndex, callback)
+let k = await this.$localForage.key(keyIndex)
 ```
 
 ### Get the list of all keys
 
 ```js
-let keys = await this.$localForage.keys(callback)
+let keys = await this.$localForage.keys()
 ```
 
 
