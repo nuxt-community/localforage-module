@@ -1,7 +1,6 @@
 # localforage
 [![npm (scoped with tag)](https://img.shields.io/npm/v/@nuxtjs/localforage/latest.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/localforage)
 [![npm](https://img.shields.io/npm/dt/@nuxtjs/localforage.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/localforage)
-[![CircleCI](https://img.shields.io/circleci/project/github/.svg?style=flat-square)]
 
 > 
 
