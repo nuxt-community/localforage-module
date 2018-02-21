@@ -147,4 +147,3 @@ localforage.LOCALSTORAGE
 
 [MIT License](./LICENSE)
 
-Copyright (c) Alex <alex@orion.sh>
