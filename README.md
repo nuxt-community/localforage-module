@@ -45,6 +45,67 @@
   }
 }
 ```
+Or
+```js
+{
+  // You can pass options in modules
+  modules: [
+    // With options
+    ['@nuxtjs/localforage', {
+      driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()
+      name        : 'myApp',
+      version     : 1.0,
+      size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+      storeName   : 'keyvaluepairs', // Should be alphanumeric, with underscores.
+      description : 'some description',
+      instances:[{
+        driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()
+        name        : 'myApp',
+        version     : 1.0,
+        size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+        storeName   : 'fileSystem', // Should be alphanumeric, with underscores.
+        description : 'some description'
+      },
+      {
+        driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()
+        name        : 'myApp',
+        version     : 1.0,
+        size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+        storeName   : 'images', // Should be alphanumeric, with underscores.
+        description : 'some description'
+      }
+    ]
+    }],
+  ],
+  // OR localforage object
+  localforage: {
+    driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()
+    name        : 'myApp',
+    version     : 1.0,
+    size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+    storeName   : 'keyvaluepairs', // Should be alphanumeric, with underscores.
+    description : 'some description',
+    instances:[{
+      driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()
+      name        : 'myApp',
+      version     : 1.0,
+      size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+      storeName   : 'fileSystem', // Should be alphanumeric, with underscores.
+      description : 'some description'
+    },
+    {
+      driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()
+      name        : 'myApp',
+      version     : 1.0,
+      size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+      storeName   : 'images', // Should be alphanumeric, with underscores.
+      description : 'some description'
+    }
+  ]
+  }]
+  }
+}
+```
 
 ##### driver
 The preferred driver(s) to use. Same format as what is passed to `setStorageDriver()`, above.
@@ -73,18 +134,24 @@ Default: `''`
 
 ```js
 let item = await this.$localForage.getItem(key)
+//or
+let item = await this.$localForage.keyvaluepairs.getItem(key)
 ```
 
 ### Set item
 
 ```js
 await this.$localForage.setItem(key, value)
+//or
+await this.$localForage.keyvaluepairs.setItem(key, value)
 ```
 
 ### Remove item
 
 ```js
 await this.$localForage.removeItem(key)
+//or
+await this.$localForage.keyvaluepairs.removeItem(key)
 ```
 
 ### Clear
@@ -97,18 +164,24 @@ await this.$localForage.clear
 
 ```js
 let length = await this.$localForage.length
+//or
+let length = await this.$localForage.keyvaluepairs.length
 ```
 
 ### Get the name of a key based on its ID
 
 ```js
 let k = await this.$localForage.key(keyIndex)
+//or
+let k = await this.$localForage.keyvaluepairs.key(keyIndex)
 ```
 
 ### Get the list of all keys
 
 ```js
 let keys = await this.$localForage.keys()
+//or
+let keys = await this.$localForage.keyvaluepairs.keys()
 ```
 
 
@@ -116,6 +189,8 @@ let keys = await this.$localForage.keys()
 
 ```js
 this.$localForage.setDriver(localforage.LOCALSTORAGE)
+//or
+this.$localForage.keyvaluepairs.setDriver(localforage.LOCALSTORAGE)
 ```
 
 By default, localForage selects backend drivers for the datastore in this order:
