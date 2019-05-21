@@ -1,16 +1,17 @@
 <template>
   <div>
-    Length : {{ nb }}
+    Length: {{ nb }}
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return { nb: 0 }
   },
-  async mounted () {
-    this.$localForage.setItem('key', 'salut')
+
+  async mounted() {
+    await this.$localForage.setItem('key', 'salut')
     this.nb = await this.$localForage.length()
   }
 }
