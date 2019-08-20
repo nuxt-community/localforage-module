@@ -22,7 +22,7 @@
     "lib"
   ],
   "dependencies": {
-    "localforage": "^1.7.3"
+    "v-localforage": "^2.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
