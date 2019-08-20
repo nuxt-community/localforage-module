@@ -4,8 +4,7 @@
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![Circle CI][circle-ci-src]][circle-ci-href]
 [![Codecov][codecov-src]][codecov-href]
-[![Dependencies][david-dm-src]][david-dm-href]
-[![Standard JS][standard-js-src]][standard-js-href]
+[![License][license-src]][license-href]
 
 > [Localforage](https://github.com/localForage/localForage) module for Nuxt.js
 
@@ -13,9 +12,13 @@
 
 ## Setup
 
-1. Add the `@nuxtjs/localforage` dependency with `yarn` or `npm` to your project
+1. Add `@nuxtjs/localforage` dependency to your project
+
+```bash
+yarn add @nuxtjs/localforage # or npm install @nuxtjs/localforage
+```
+
 2. Add `@nuxtjs/localforage` to the `modules` section of `nuxt.config.js`
-3. Configure it:
 
 ```js
 {
@@ -24,14 +27,7 @@
     '@nuxtjs/localforage',
 
     // With options
-    ['@nuxtjs/localforage', {
-      driver: localforage.WEBSQL, // Force WebSQL; same as using setDriver()
-      name: 'myApp',
-      version: 1.0,
-      size: 4980736, // Size of database, in bytes. WebSQL-only for now.
-      storeName: 'keyvaluepairs', // Should be alphanumeric, with underscores.
-      description: 'some description'
-    }]
+    ['@nuxtjs/localforage', { /* module options */ }]
   ]
 }
 ```
@@ -44,12 +40,7 @@
     '@nuxtjs/localforage'
   ],
   localforage: {
-    driver: localforage.WEBSQL, // Force WebSQL; same as using setDriver()
-    name: 'myApp',
-    version: 1.0,
-    size: 4980736, // Size of database, in bytes. WebSQL-only for now.
-    storeName: 'keyvaluepairs', // Should be alphanumeric, with underscores.
-    description: 'some description'
+    /* module options */
   }
 }
 ```
@@ -169,11 +160,11 @@ If you would like to force usage of a particular driver you can use $setStorageD
 Copyright (c) Nuxt Community
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/dt/@nuxtjs/localforage-module.svg?style=flat-square
-[npm-version-href]: https://npmjs.com/package/@nuxtjs/localforage-module
+[npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/localforage/latest.svg?style=flat-square
+[npm-version-href]: https://npmjs.com/package/@nuxtjs/localforage
 
-[npm-downloads-src]: https://img.shields.io/npm/v/@nuxtjs/localforage-module/latest.svg?style=flat-square
-[npm-downloads-href]: https://npmjs.com/package/@nuxtjs/localforage-module
+[npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/localforage.svg?style=flat-square
+[npm-downloads-href]: https://npmjs.com/package/@nuxtjs/localforage
 
 [circle-ci-src]: https://img.shields.io/circleci/project/github/nuxt-community/localforage-module.svg?style=flat-square
 [circle-ci-href]: https://circleci.com/gh/nuxt-community/localforage-module
@@ -181,8 +172,5 @@ Copyright (c) Nuxt Community
 [codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/localforage-module.svg?style=flat-square
 [codecov-href]: https://codecov.io/gh/nuxt-community/localforage-module
 
-[david-dm-src]: https://david-dm.org/nuxt-community/localforage-module/status.svg?style=flat-square
-[david-dm-href]: https://david-dm.org/nuxt-community/localforage-module
-
-[standard-js-src]: https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square
-[standard-js-href]: https://standardjs.com
+[license-src]: https://img.shields.io/npm/l/@nuxtjs/localforage.svg?style=flat-square
+[license-href]: https://npmjs.com/package/@nuxtjs/localforage

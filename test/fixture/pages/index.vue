@@ -6,11 +6,11 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return { nb: 0 }
   },
 
-  async mounted() {
+  async mounted () {
     await this.$localForage.setItem('key', 'salut')
     this.nb = await this.$localForage.length()
   }
