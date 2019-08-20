@@ -83,6 +83,12 @@ The name of the datastore. In IndexedDB this is the dataStore, in WebSQL this is
 
 A description of the database, essentially for developer usage.
 
+### `instances` (optional)
+
+- Default: `[]`
+
+You can create multiple instances.
+
 [More informations on LocalForage documentation](https://github.com/localForage/localForage)
 
 ## Usage
@@ -146,6 +152,30 @@ If you would like to force usage of a particular driver you can use $setStorageD
 - localforage.INDEXEDDB
 - localforage.WEBSQL
 - localforage.LOCALSTORAGE
+
+## Advanced Usage
+
+You can register multiple instances, see below:
+
+```js
+{
+  localforage: {
+    instances: [{
+      name: 'myApp',
+      storeName: 'images'
+    }, {
+      name: 'myApp',
+      storeName: 'fileSystem'
+    }]
+  }
+}
+
+// for images
+await this.$localforage.images.setItem(key, value)
+
+// for fileSystem
+await this.$localforage.fileSystem.setItem(key, value)
+```
 
 ## Development
 
