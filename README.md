@@ -1,69 +1,93 @@
-# localforage
-[![npm (scoped with tag)](https://img.shields.io/npm/v/@nuxtjs/localforage/latest.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/localforage)
-[![npm](https://img.shields.io/npm/dt/@nuxtjs/localforage.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/localforage)
+# @nuxtjs/localforage
 
-> 
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![Circle CI][circle-ci-src]][circle-ci-href]
+[![Codecov][codecov-src]][codecov-href]
+[![License][license-src]][license-href]
+
+> [Localforage](https://github.com/localForage/localForage) module for Nuxt.js
+
+[📖 **Release Notes**](./CHANGELOG.md)
 
 ## Setup
-- Add `@nuxtjs/localforage` dependency using yarn or npm to your project
-- Add `@nuxtjs/localforage` to `modules` section of `nuxt.config.js`
+
+1. Add `@nuxtjs/localforage` dependency to your project
+
+```bash
+yarn add @nuxtjs/localforage # or npm install @nuxtjs/localforage
+```
+
+2. Add `@nuxtjs/localforage` to the `modules` section of `nuxt.config.js`
 
 ```js
 {
   modules: [
     // Simple usage
-    '@nuxtjs/localforage'
- ]
+    '@nuxtjs/localforage',
+
+    // With options
+    ['@nuxtjs/localforage', { /* module options */ }]
+  ]
 }
 ```
 
-## Options
-`nuxt.config.js`
+### Using top level options
 
 ```js
 {
-  // You can pass options in modules
   modules: [
-    // With options
-    ['@nuxtjs/localforage', {
-      driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()
-      name        : 'myApp',
-      version     : 1.0,
-      size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
-      storeName   : 'keyvaluepairs', // Should be alphanumeric, with underscores.
-      description : 'some description'
-    }],
+    '@nuxtjs/localforage'
   ],
-  // OR localforage object
   localforage: {
-    driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()
-    name        : 'myApp',
-    version     : 1.0,
-    size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
-    storeName   : 'keyvaluepairs', // Should be alphanumeric, with underscores.
-    description : 'some description'
+    /* module options */
   }
 }
 ```
 
-##### driver
+## Options
+
+### driver (optional)
+
+- Default: `[localforage.INDEXEDDB, localforage.WEBSQL, localforage.LOCALSTORAGE]`
+
 The preferred driver(s) to use. Same format as what is passed to `setStorageDriver()`, above.
-Default: `[localforage.INDEXEDDB, localforage.WEBSQL, localforage.LOCALSTORAGE]`
-##### name
+
+### name (optional)
+
+- Default: `'nuxtJS'`
+
 The name of the database. May appear during storage limit prompts. Useful to use the name of your app here. In localStorage, this is used as a key prefix for all keys stored in localStorage.
-Default: `'localforage'`
-##### size
-The size of the database in bytes. Used only in WebSQL for now.
-Default: `4980736`
-##### storeName
-The name of the datastore. In IndexedDB this is the dataStore, in WebSQL this is the name of the key/value table in the database. Must be alphanumeric, with underscores. Any non-alphanumeric characters will be converted to underscores.
-Default: `'keyvaluepairs'`
-##### version
+
+### version (optional)
+
+- Default: `1.0`
+
 The version of your database. May be used for upgrades in the future; currently unused.
-Default: `1.0`
-##### description
+
+### size (optional)
+
+- Default: `4980736`
+
+The size of the database in bytes. Used only in WebSQL for now.
+
+### storeName (optional)
+
+- Default: `'nuxtLocalForage'`
+
+The name of the datastore. In IndexedDB this is the dataStore, in WebSQL this is the name of the key/value table in the database. Must be alphanumeric, with underscores. Any non-alphanumeric characters will be converted to underscores.
+
+### description (optional)
+
+- Default: `''`
+
 A description of the database, essentially for developer usage.
-Default: `''`
+
+### `instances` (optional)
+
+- Default: `[]`
+
+You can create multiple instances.
 
 [More informations on LocalForage documentation](https://github.com/localForage/localForage)
 
@@ -111,8 +135,7 @@ let k = await this.$localForage.key(keyIndex)
 let keys = await this.$localForage.keys()
 ```
 
-
-### Force usage of a particular driver or drivers, if available.
+### Force usage of a particular driver or drivers, if available
 
 ```js
 this.$localForage.setDriver(localforage.LOCALSTORAGE)
@@ -126,12 +149,33 @@ By default, localForage selects backend drivers for the datastore in this order:
 
 If you would like to force usage of a particular driver you can use $setStorageDriver() with one or more of the following parameters.
 
-localforage.INDEXEDDB
+- localforage.INDEXEDDB
+- localforage.WEBSQL
+- localforage.LOCALSTORAGE
 
-localforage.WEBSQL
+## Advanced Usage
 
-localforage.LOCALSTORAGE
+You can register multiple instances, see below:
 
+```js
+{
+  localforage: {
+    instances: [{
+      name: 'myApp',
+      storeName: 'images'
+    }, {
+      name: 'myApp',
+      storeName: 'fileSystem'
+    }]
+  }
+}
+
+// for images
+await this.$localforage.images.setItem(key, value)
+
+// for fileSystem
+await this.$localforage.fileSystem.setItem(key, value)
+```
 
 ## Development
 
@@ -143,3 +187,20 @@ localforage.LOCALSTORAGE
 
 [MIT License](./LICENSE)
 
+Copyright (c) Nuxt Community
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/localforage/latest.svg?style=flat-square
+[npm-version-href]: https://npmjs.com/package/@nuxtjs/localforage
+
+[npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/localforage.svg?style=flat-square
+[npm-downloads-href]: https://npmjs.com/package/@nuxtjs/localforage
+
+[circle-ci-src]: https://img.shields.io/circleci/project/github/nuxt-community/localforage-module.svg?style=flat-square
+[circle-ci-href]: https://circleci.com/gh/nuxt-community/localforage-module
+
+[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/localforage-module.svg?style=flat-square
+[codecov-href]: https://codecov.io/gh/nuxt-community/localforage-module
+
+[license-src]: https://img.shields.io/npm/l/@nuxtjs/localforage.svg?style=flat-square
+[license-href]: https://npmjs.com/package/@nuxtjs/localforage

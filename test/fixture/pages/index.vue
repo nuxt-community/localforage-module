@@ -1,6 +1,6 @@
 <template>
   <div>
-    Length : {{ nb }}
+    Length: {{ nb }}
   </div>
 </template>
 
@@ -9,8 +9,9 @@ export default {
   data () {
     return { nb: 0 }
   },
+
   async mounted () {
-    this.$localForage.setItem('key', 'salut')
+    await this.$localForage.setItem('key', 'salut')
     this.nb = await this.$localForage.length()
   }
 }
