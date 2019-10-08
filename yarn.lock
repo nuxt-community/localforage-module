@@ -9959,10 +9959,10 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
 
-v-localforage@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/v-localforage/-/v-localforage-2.0.0.tgz#4cc4e16e0e2c1d94bfebe8883042c34d38c8eb4c"
-  integrity sha512-SEGnKb2gsG30dv3rMdVL3yGFQc9C8aQMt5/Nk5qerIadeXV9R3nrAHlAf5IijBPR6zDkhf1TpvGkud0L1vhSOg==
+v-localforage@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/v-localforage/-/v-localforage-2.0.1.tgz#2062fde2f5f913dc3eeb40d8b18c91310d50066a"
+  integrity sha512-C6WOOdG+Q6VD89k2WAsfetmKG+3NYgZIOUAR9YH5AMY782ifXsPMB6VrvLFyWdi7aiq4sz2y+mDKeY2Y2155yw==
   dependencies:
     localforage "^1.7.3"
 
