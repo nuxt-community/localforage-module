@@ -15,14 +15,14 @@
 1. Add `@nuxtjs/localforage` dependency to your project
 
 ```bash
-yarn add @nuxtjs/localforage # or npm install @nuxtjs/localforage
+yarn add --dev @nuxtjs/localforage # or npm install --save-dev @nuxtjs/localforage
 ```
 
-2. Add `@nuxtjs/localforage` to the `modules` section of `nuxt.config.js`
+2. Add `@nuxtjs/localforage` to the `buildModules` section of `nuxt.config.js`
 
 ```js
-{
-  modules: [
+export default {
+  buildModules: [
     // Simple usage
     '@nuxtjs/localforage',
 
@@ -32,11 +32,13 @@ yarn add @nuxtjs/localforage # or npm install @nuxtjs/localforage
 }
 ```
 
+:warning: If you are using Nuxt **< v2.9** you have to install the module as a `dependency` (No `--dev` or `--save-dev` flags) and use `modules` section in `nuxt.config.js` instead of `buildModules`.
+
 ### Using top level options
 
 ```js
-{
-  modules: [
+export default {
+  buildModules: [
     '@nuxtjs/localforage'
   ],
   localforage: {
@@ -158,7 +160,12 @@ If you would like to force usage of a particular driver you can use $setStorageD
 You can register multiple instances, see below:
 
 ```js
-{
+// nuxt.config.js
+export default {
+  buildModules: [
+    '@nuxtjs/localforage'
+  ],
+  
   localforage: {
     instances: [{
       name: 'myApp',

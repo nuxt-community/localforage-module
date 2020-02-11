@@ -3,7 +3,7 @@ module.exports = {
   render: {
     resourceHints: false
   },
-  modules: [
+  buildModules: [
     { handler: require('../../') }
   ]
 }
