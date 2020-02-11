@@ -2,25 +2,22 @@
   "name": "@nuxtjs/localforage",
   "version": "1.0.2",
   "description": "Localforage module for Nuxt.js",
+  "repository": "nuxt-community/localforage-module",
   "license": "MIT",
   "contributors": [
     "Alexandre Chopin <alex@orion.sh>",
     "Ricardo Gobbo de Souza <ricardogobbosouza@yahoo.com.br>"
   ],
-  "main": "lib/module.js",
-  "repository": "nuxt-community/localforage-module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "dev": "nuxt test/fixture",
-    "lint": "eslint --ext .js,.vue lib test",
-    "test": "yarn lint && jest",
-    "release": "yarn test && standard-version && git push --follow-tags && npm publish"
-  },
   "files": [
     "lib"
   ],
+  "main": "lib/module.js",
+  "scripts": {
+    "dev": "nuxt test/fixture",
+    "lint": "eslint --ext .js,.vue lib test",
+    "release": "yarn test && standard-version && git push --follow-tags && npm publish",
+    "test": "yarn lint && jest"
+  },
   "dependencies": {
     "v-localforage": "^2.0.1"
   },
@@ -28,12 +25,15 @@
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@nuxtjs/eslint-config": "latest",
+    "@nuxtjs/module-test-utils": "latest",
     "codecov": "latest",
     "eslint": "latest",
-    "get-port": "latest",
     "husky": "latest",
     "jest": "latest",
     "nuxt-edge": "latest",
     "standard-version": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
