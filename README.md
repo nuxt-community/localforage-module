@@ -203,8 +203,8 @@ Copyright (c) Nuxt Community
 [npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/localforage.svg
 [npm-downloads-href]: https://npmjs.com/package/@nuxtjs/localforage
 
-[github-actions-ci-src]: https://github.com/nuxt-community/router-module/workflows/ci/badge.svg
-[github-actions-ci-href]: https://github.com/nuxt-community/router-module/actions?query=workflow%3Aci
+[github-actions-ci-src]: https://github.com/nuxt-community/localforage-module/workflows/ci/badge.svg
+[github-actions-ci-href]: https://github.com/nuxt-community/localforage-module/actions?query=workflow%3Aci
 
 [codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/localforage-module.svg
 [codecov-href]: https://codecov.io/gh/nuxt-community/localforage-module
