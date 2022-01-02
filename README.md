@@ -32,6 +32,21 @@ export default {
 }
 ```
 
+3. Add Types for Typescript support (Optional)
+
+Add the types to your "types" array in tsconfig.json after the @nuxt/types (Nuxt 2.9.0+) or @nuxt/vue-app entry
+
+```json
+{
+  "compilerOptions": {
+    "types": [
+      "@nuxt/types",
+      "@nuxtjs/localforage"
+    ]
+  }
+}
+```
+
 :warning: If you are using Nuxt **< v2.9** you have to install the module as a `dependency` (No `--dev` or `--save-dev` flags) and use `modules` section in `nuxt.config.js` instead of `buildModules`.
 
 ### Using top level options
