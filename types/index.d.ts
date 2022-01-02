@@ -1,5 +1,5 @@
-import LocalForage = require("localforage");
 import "./vuex"
+import {LocalForage, LocalForageOptions} from "./localforage";
 
 declare module '@nuxt/vue-app' {
   interface Context {
