@@ -11,7 +11,8 @@
   "main": "lib/module.js",
   "types": "types/index.d.ts",
   "files": [
-    "lib"
+    "lib",
+    "types/*.d.ts"
   ],
   "scripts": {
     "dev": "nuxt test/fixture",
