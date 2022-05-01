@@ -1,4 +1,4 @@
-import { addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addAutoImport, addPlugin, createResolver, defineNuxtModule, isNuxt3 } from '@nuxt/kit'
 import { defu } from 'defu'
 import { name, version } from '../package.json'
 import { LocalForageOptions } from './runtime/types'
@@ -46,8 +46,14 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Create resolver to resolve relative paths
     const { resolve } = createResolver(import.meta.url)
+    const runtimeDir = resolve('./runtime')
 
-    // addPlugin(resolve('./runtime/plugin.client'))
-    addPlugin(resolve('./runtime/plugin.client'))
+    addPlugin(resolve(runtimeDir, 'plugin.client'))
+
+    if (isNuxt3()) {
+      addAutoImport([
+        { name: 'useLocalForage', as: 'useLocalForage', from: resolve(runtimeDir, 'composables') }
+      ].filter(Boolean))
+    }
   }
 })

@@ -18,9 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from '#imports'
-
-const { $localForage } = useNuxtApp()
+const storage = useLocalForage()
 const savedKey = ref<string>()
 const key = ref('')
 const value = ref('')
@@ -28,32 +26,32 @@ const value = ref('')
 async function save () {
   // Clear the key/value defined by the user before attempting to save
   if (savedKey.value) {
-    await $localForage.removeItem(savedKey.value)
+    await storage.removeItem(savedKey.value)
   }
 
   // Save the key, so we can get the value on mount
-  await $localForage.setItem('_key', key.value)
+  await storage.setItem('_key', key.value)
   savedKey.value = key.value
 
   // Save the value using key/value defined by the user
-  await $localForage.setItem(key.value, value.value)
+  await storage.setItem(key.value, value.value)
 }
 
 function get () {
   // Get the value defined by the user
-  $localForage.getItem(key.value).then((value) => {
-    switch ($localForage.driver()) {
-      case $localForage.INDEXEDDB:
+  storage.getItem(key.value).then((value) => {
+    switch (storage.driver()) {
+      case storage.INDEXEDDB:
         console.log('STORED IN:', 'IndexedDB')
         break
-      case $localForage.WEBSQL:
+      case storage.WEBSQL:
         console.log('STORED IN:', 'Web SQL')
         break
-      case $localForage.LOCALSTORAGE:
+      case storage.LOCALSTORAGE:
         console.log('STORED IN:', 'Local Storage')
         break
       default:
-        console.log('STORED IN:', $localForage.driver())
+        console.log('STORED IN:', storage.driver())
     }
 
     console.log('Key:', key.value)
@@ -63,13 +61,13 @@ function get () {
 
 onMounted(async () => {
   // Get the key
-  const _savedKey = await $localForage.getItem('_key') as string
+  const _savedKey = await storage.getItem('_key') as string
 
   // If defined, load the data
   if (_savedKey) {
     savedKey.value = _savedKey
     key.value = _savedKey
-    value.value = await $localForage.getItem(key.value) as string
+    value.value = await storage.getItem(key.value) as string
   }
 })
 </script>
