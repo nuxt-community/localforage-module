@@ -1,6 +1,7 @@
 {
   "name": "nuxt-localforage",
   "version": "1.0.0",
+  "repository": "JoaoPedroAS51/nuxt-localforage",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -33,5 +34,8 @@
     "eslint": "latest",
     "nuxt": "^3.0.0-rc.1",
     "standard-version": "^9.3.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
