@@ -1,9 +1,13 @@
 import { addAutoImport, addPlugin, createResolver, defineNuxtModule, isNuxt3 } from '@nuxt/kit'
 import { defu } from 'defu'
+import localforage from 'localforage'
 import { name, version } from '../package.json'
 import { LocalForageOptions } from './runtime/types'
 
-export { INDEXEDDB, LOCALSTORAGE, WEBSQL } from 'localforage'
+export const INDEXEDDB = localforage.INDEXEDDB
+export const LOCALSTORAGE = localforage.LOCALSTORAGE
+export const WEBSQL = localforage.WEBSQL
+
 export * from './runtime/types'
 
 export interface ModuleOptions extends LocalForageOptions {
