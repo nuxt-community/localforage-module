@@ -1,5 +1,5 @@
+import { useNuxtApp, useRuntimeConfig } from '#app'
 import { LocalForage } from './types'
-import { useNuxtApp, useRuntimeConfig } from '#imports'
 
 export function useLocalForage (instance?: string): LocalForage {
   const { $localForage } = useNuxtApp()
