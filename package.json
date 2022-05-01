@@ -18,7 +18,9 @@
     "prepack": "nuxt-module-build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "lint": "eslint --ext .js,.vue,.ts .",
+    "release": "yarn lint && standard-version && git push --follow-tags && npm publish"
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0-rc.1",
