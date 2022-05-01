@@ -110,57 +110,57 @@ You can create multiple instances.
 ### Get item
 
 ```js
-const localStorage = useLocalForage()
-let item = await localStorage.getItem(key)
+const localForage = useLocalForage()
+let item = await localForage.getItem(key)
 ```
 
 ### Set item
 
 ```js
-const localStorage = useLocalForage()
-await localStorage.setItem(key, value)
+const localForage = useLocalForage()
+await localForage.setItem(key, value)
 ```
 
 ### Remove item
 
 ```js
-const localStorage = useLocalForage()
-await localStorage.removeItem(key)
+const localForage = useLocalForage()
+await localForage.removeItem(key)
 ```
 
 ### Clear
 
 ```js
-const localStorage = useLocalForage()
-await localStorage.clear
+const localForage = useLocalForage()
+await localForage.clear
 ```
 
 ### Gets the length
 
 ```js
-const localStorage = useLocalForage()
-let length = await localStorage.length
+const localForage = useLocalForage()
+let length = await localForage.length
 ```
 
 ### Get the name of a key based on its ID
 
 ```js
-const localStorage = useLocalForage()
-let k = await localStorage.key(keyIndex)
+const localForage = useLocalForage()
+let k = await localForage.key(keyIndex)
 ```
 
 ### Get the list of all keys
 
 ```js
-const localStorage = useLocalForage()
-let keys = await localStorage.keys()
+const localForage = useLocalForage()
+let keys = await localForage.keys()
 ```
 
 ### Force usage of a particular driver or drivers, if available
 
 ```js
-const localStorage = useLocalForage()
-localStorage.setDriver(localforage.LOCALSTORAGE)
+const localForage = useLocalForage()
+localForage.setDriver(localforage.LOCALSTORAGE)
 ```
 
 By default, localForage selects backend drivers for the datastore in this order:
