@@ -7,9 +7,7 @@ export { INDEXEDDB, LOCALSTORAGE, WEBSQL } from 'localforage'
 export * from './runtime/types'
 
 export interface ModuleOptions extends LocalForageOptions {
-  instances?: {
-    [key: string]: LocalForageOptions
-  }
+  instances?: LocalForageOptions[]
 }
 
 export default defineNuxtModule<ModuleOptions>({
