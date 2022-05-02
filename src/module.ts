@@ -1,8 +1,8 @@
-import { addAutoImport, addPlugin, createResolver, defineNuxtModule, isNuxt2 } from '@nuxt/kit'
-import { defu } from 'defu'
+import { addAutoImport, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import localforage from 'localforage'
 import { name, version } from '../package.json'
 import { LocalForageOptions } from './runtime/types'
+import { defineRuntimeConfig } from './utils'
 
 export const INDEXEDDB = localforage.INDEXEDDB
 export const LOCALSTORAGE = localforage.LOCALSTORAGE
@@ -29,24 +29,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   setup (options, nuxt) {
     // Default runtimeConfig
-    const runtimeConfig = defu(getRuntimeConfig(nuxt), {
-      name: options.name,
-      storeName: options.storeName,
-      driver: options.driver,
-      size: options.size,
-      version: options.version,
-      description: options,
-      instances: options.instances
-    })
-
-    // Remove `undefined` values
-    Object.keys(runtimeConfig).forEach((key) => {
-      if (runtimeConfig[key] === undefined) {
-        delete runtimeConfig[key]
-      }
-    })
-
-    setRuntimeConfig(nuxt, runtimeConfig)
+    defineRuntimeConfig(nuxt, options)
 
     // Create resolver to resolve relative paths
     const { resolve } = createResolver(import.meta.url)
@@ -59,19 +42,3 @@ export default defineNuxtModule<ModuleOptions>({
     ].filter(Boolean))
   }
 })
-
-function getRuntimeConfig (nuxt: any) {
-  if (isNuxt2()) {
-    return nuxt.options.publicRuntimeConfig.localForage
-  } else {
-    return nuxt.options.runtimeConfig.public.localForage
-  }
-}
-
-function setRuntimeConfig (nuxt: any, config: ModuleOptions) {
-  if (isNuxt2()) {
-    nuxt.options.publicRuntimeConfig.localForage = config
-  } else {
-    nuxt.options.runtimeConfig.public.localForage = config
-  }
-}
