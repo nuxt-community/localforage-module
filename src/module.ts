@@ -40,8 +40,10 @@ export default defineNuxtModule<ModuleOptions>({
       mode: 'client'
     })
 
-    addAutoImport([
-      { name: 'useLocalForage', as: 'useLocalForage', from: resolve(runtimeDir, 'composables') }
-    ].filter(Boolean))
+    addAutoImport({
+      name: 'useLocalForage',
+      as: 'useLocalForage',
+      from: resolve(runtimeDir, 'composables')
+    })
   }
 })
