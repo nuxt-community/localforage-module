@@ -35,7 +35,10 @@ export default defineNuxtModule<ModuleOptions>({
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = resolve('./runtime')
 
-    addPlugin(resolve(runtimeDir, 'plugin.client'))
+    addPlugin({
+      src: resolve(runtimeDir, 'plugin'),
+      mode: 'client'
+    })
 
     addAutoImport([
       { name: 'useLocalForage', as: 'useLocalForage', from: resolve(runtimeDir, 'composables') }
