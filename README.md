@@ -10,8 +10,8 @@
 
 [📖 **Release Notes**](./CHANGELOG.md)
 
-**Note**: This module is compatible with [Nuxt 3 and Nuxt Bridge](https://v3.nuxtjs.org/). If you're looking for the
-Nuxt 2 version, check out [@nuxtjs/localforage](https://github.com/nuxt-community/localforage-module) module.
+**Note**: This version of the module is compatible with [Nuxt 3 and Nuxt Bridge](https://v3.nuxtjs.org/). If you're
+looking for the Nuxt 2 version, check out [v1.1.0](https://github.com/nuxt-community/localforage-module/tree/v1.1.0).
 
 ## Setup
 
@@ -204,7 +204,7 @@ export default defineNuxtConfig({
  * Composition API
  */
 
-// for images
+  // for images
 const imagesStorage = useLocalForage('images')
 await imagesStorage.setItem(key, value)
 
@@ -237,16 +237,21 @@ Copyright (c) Nuxt Community
 <!-- Badges -->
 
 [npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/localforage/latest.svg
+
 [npm-version-href]: https://npmjs.com/package/@nuxtjs/localforage
 
 [npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/localforage.svg
+
 [npm-downloads-href]: https://npmjs.com/package/@nuxtjs/localforage
 
 [github-actions-ci-src]: https://github.com/nuxt-community/localforage-module/workflows/ci/badge.svg
+
 [github-actions-ci-href]: https://github.com/nuxt-community/localforage-module/actions?query=workflow%3Aci
 
 [codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/localforage-module.svg
+
 [codecov-href]: https://codecov.io/gh/nuxt-community/localforage-module
 
 [license-src]: https://img.shields.io/npm/l/@nuxtjs/localforage.svg
+
 [license-href]: https://npmjs.com/package/@nuxtjs/localforage
