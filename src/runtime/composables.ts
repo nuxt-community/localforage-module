@@ -6,7 +6,7 @@ export function useLocalForage (instance?: string): LocalForage {
   const { public: { localForage: localForageOptions } } = useRuntimeConfig()
 
   if (instance) {
-    if (!localForageOptions.instances?.find(({ name }) => name === instance)) {
+    if (!localForageOptions.instances?.find(({ storeName, name }) => storeName === instance || name === instance)) {
       throw new Error(`Instance "${instance}" not found in LocalForage options.`)
     }
   }
