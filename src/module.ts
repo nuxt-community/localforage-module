@@ -11,7 +11,15 @@ export const WEBSQL = localforage.WEBSQL
 export * from './runtime/types'
 
 export interface ModuleOptions extends LocalForageOptions {
-  instances?: LocalForageOptions[]
+  name: string
+  storeName: string
+  instances: LocalForageOptions[]
+}
+
+declare module '@nuxt/schema' {
+  interface PublicRuntimeConfig {
+    localForage: ModuleOptions
+  }
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -22,7 +30,8 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     name: 'nuxtJS',
-    storeName: 'nuxtLocalForage'
+    storeName: 'nuxtLocalForage',
+    instances: []
   },
   setup (options, nuxt) {
     // Default runtimeConfig
