@@ -10,6 +10,9 @@
 
 [📖 **Release Notes**](./CHANGELOG.md)
 
+**Note**: This version of the module is compatible with [Nuxt 3 and Nuxt Bridge](https://v3.nuxtjs.org/). If you're
+looking for the Nuxt 2 version, check out [v1.1.0](https://github.com/nuxt-community/localforage-module/tree/v1.1.0).
+
 ## Setup
 
 1. Add `@nuxtjs/localforage` dependency to your project
@@ -18,33 +21,35 @@
 yarn add --dev @nuxtjs/localforage # or npm install --save-dev @nuxtjs/localforage
 ```
 
-2. Add `@nuxtjs/localforage` to the `buildModules` section of `nuxt.config.js`
+2. Add `@nuxtjs/localforage` to the `modules` section of `nuxt.config.js`
 
 ```js
-export default {
-  buildModules: [
+import { defineNuxtConfig } from 'nuxt'
+
+export default defineNuxtConfig({
+  modules: [
     // Simple usage
     '@nuxtjs/localforage',
 
     // With options
     ['@nuxtjs/localforage', { /* module options */ }]
   ]
-}
+})
 ```
-
-:warning: If you are using Nuxt **< v2.9** you have to install the module as a `dependency` (No `--dev` or `--save-dev` flags) and use `modules` section in `nuxt.config.js` instead of `buildModules`.
 
 ### Using top level options
 
 ```js
-export default {
-  buildModules: [
+import { defineNuxtConfig } from 'nuxt'
+
+export default defineNuxtConfig({
+  modules: [
     '@nuxtjs/localforage'
   ],
-  localforage: {
+  localForage: {
     /* module options */
   }
-}
+})
 ```
 
 ## Options
@@ -59,7 +64,8 @@ The preferred driver(s) to use. Same format as what is passed to `setStorageDriv
 
 - Default: `'nuxtJS'`
 
-The name of the database. May appear during storage limit prompts. Useful to use the name of your app here. In localStorage, this is used as a key prefix for all keys stored in localStorage.
+The name of the database. May appear during storage limit prompts. Useful to use the name of your app here. In
+localStorage, this is used as a key prefix for all keys stored in localStorage.
 
 ### version (optional)
 
@@ -77,7 +83,8 @@ The size of the database in bytes. Used only in WebSQL for now.
 
 - Default: `'nuxtLocalForage'`
 
-The name of the datastore. In IndexedDB this is the dataStore, in WebSQL this is the name of the key/value table in the database. Must be alphanumeric, with underscores. Any non-alphanumeric characters will be converted to underscores.
+The name of the datastore. In IndexedDB this is the dataStore, in WebSQL this is the name of the key/value table in the
+database. Must be alphanumeric, with underscores. Any non-alphanumeric characters will be converted to underscores.
 
 ### description (optional)
 
@@ -95,52 +102,65 @@ You can create multiple instances.
 
 ## Usage
 
+- In Composition API, you can access the `LocalForage` instance by using `const localForage = useLocalForage()`
+  or `const { $localForage } = useNuxtApp()`.
+
+- In Options API, you can access the `LocalForage` instance by using `this.$localForage`.
+
 ### Get item
 
 ```js
-let item = await this.$localForage.getItem(key)
+const localForage = useLocalForage()
+let item = await localForage.getItem(key)
 ```
 
 ### Set item
 
 ```js
-await this.$localForage.setItem(key, value)
+const localForage = useLocalForage()
+await localForage.setItem(key, value)
 ```
 
 ### Remove item
 
 ```js
-await this.$localForage.removeItem(key)
+const localForage = useLocalForage()
+await localForage.removeItem(key)
 ```
 
 ### Clear
 
 ```js
-await this.$localForage.clear
+const localForage = useLocalForage()
+await localForage.clear
 ```
 
 ### Gets the length
 
 ```js
-let length = await this.$localForage.length
+const localForage = useLocalForage()
+let length = await localForage.length
 ```
 
 ### Get the name of a key based on its ID
 
 ```js
-let k = await this.$localForage.key(keyIndex)
+const localForage = useLocalForage()
+let k = await localForage.key(keyIndex)
 ```
 
 ### Get the list of all keys
 
 ```js
-let keys = await this.$localForage.keys()
+const localForage = useLocalForage()
+let keys = await localForage.keys()
 ```
 
 ### Force usage of a particular driver or drivers, if available
 
 ```js
-this.$localForage.setDriver(localforage.LOCALSTORAGE)
+const localForage = useLocalForage()
+localForage.setDriver(localforage.LOCALSTORAGE)
 ```
 
 By default, localForage selects backend drivers for the datastore in this order:
@@ -149,7 +169,8 @@ By default, localForage selects backend drivers for the datastore in this order:
 2. WebSQL
 3. localStorage
 
-If you would like to force usage of a particular driver you can use $setStorageDriver() with one or more of the following parameters.
+If you would like to force usage of a particular driver you can use $setStorageDriver() with one or more of the
+following parameters.
 
 - localforage.INDEXEDDB
 - localforage.WEBSQL
@@ -161,12 +182,14 @@ You can register multiple instances, see below:
 
 ```js
 // nuxt.config.js
-export default {
-  buildModules: [
+import { defineNuxtConfig } from 'nuxt'
+
+export default defineNuxtConfig({
+  modules: [
     '@nuxtjs/localforage'
   ],
-  
-  localforage: {
+
+  localForage: {
     instances: [{
       name: 'myApp',
       storeName: 'images'
@@ -175,7 +198,23 @@ export default {
       storeName: 'fileSystem'
     }]
   }
-}
+})
+
+/**
+ * Composition API
+ */
+
+  // for images
+const imagesStorage = useLocalForage('images')
+await imagesStorage.setItem(key, value)
+
+// for fileSystem
+const fileSystemStorage = useLocalForage('fileSystem')
+await fileSystemStorage.setItem(key, value)
+
+/**
+ * Options API
+ */
 
 // for images
 await this.$localforage.images.setItem(key, value)
@@ -186,9 +225,8 @@ await this.$localforage.fileSystem.setItem(key, value)
 
 ## Development
 
-- Clone this repository
-- Install dependnecies using `yarn install` or `npm install`
-- Start development server using `npm run dev`
+- Run `npm run dev:prepare` to generate type stubs.
+- Use `npm run dev` to start [playground](./playground) in development mode.
 
 ## License
 
@@ -197,17 +235,23 @@ await this.$localforage.fileSystem.setItem(key, value)
 Copyright (c) Nuxt Community
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/localforage/latest.svg
+
 [npm-version-href]: https://npmjs.com/package/@nuxtjs/localforage
 
 [npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/localforage.svg
+
 [npm-downloads-href]: https://npmjs.com/package/@nuxtjs/localforage
 
 [github-actions-ci-src]: https://github.com/nuxt-community/localforage-module/workflows/ci/badge.svg
+
 [github-actions-ci-href]: https://github.com/nuxt-community/localforage-module/actions?query=workflow%3Aci
 
 [codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/localforage-module.svg
+
 [codecov-href]: https://codecov.io/gh/nuxt-community/localforage-module
 
 [license-src]: https://img.shields.io/npm/l/@nuxtjs/localforage.svg
+
 [license-href]: https://npmjs.com/package/@nuxtjs/localforage
