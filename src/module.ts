@@ -1,4 +1,4 @@
-import { addAutoImport, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addImports, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import localforage from 'localforage'
 import { name, version } from '../package.json'
 import { LocalForageOptions } from './runtime/types'
@@ -18,10 +18,7 @@ export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version,
-    configKey: 'localForage',
-    compatibility: {
-      bridge: true
-    }
+    configKey: 'localForage'
   },
   defaults: {
     name: 'nuxtJS',
@@ -40,7 +37,7 @@ export default defineNuxtModule<ModuleOptions>({
       mode: 'client'
     })
 
-    addAutoImport({
+    addImports({
       name: 'useLocalForage',
       as: 'useLocalForage',
       from: resolve(runtimeDir, 'composables')
